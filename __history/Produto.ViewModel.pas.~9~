@@ -1,0 +1,99 @@
+unit Produto.ViewModel;
+
+interface
+
+uses
+  Produto.Model, ProdutoDAO, Data.DB, System.Classes, System.SysUtils;
+
+type
+  TProdutoViewModel = class
+  private
+    FProduto: TProduto;
+    FProdutoDAO: TProdutoDAO;
+  public
+    constructor Create(AProdutoDAO: TProdutoDAO);
+    destructor Destroy; override;
+    function InserirProduto(nome: string; preco: Currency): Boolean;
+    function ListarProdutos(idProduto: integer; nome: string): TDataSet;
+    function ExcluirProduto(idProduto: integer): Boolean;
+    function AtualizarProduto(nome: string; preco: Currency; estoque: integer): Boolean;
+    property Produto: TProduto read FProduto;
+  end;
+
+implementation
+
+{ TProdutoViewModel }
+
+constructor TProdutoViewModel.Create(AProdutoDAO: TProdutoDAO);
+begin
+  inherited Create;
+  if not Assigned(AProdutoDAO) then
+    raise Exception.Create('ProdutoDAO não pode ser nulo.');
+
+  FProdutoDAO := AProdutoDAO;
+  FProduto := TProduto.Create;
+end;
+
+destructor TProdutoViewModel.Destroy;
+begin
+  FProduto.Free;
+  inherited Destroy;
+end;
+
+function TProdutoViewModel.InserirProduto(nome: string; preco: Currency): Boolean;
+begin
+  // Verifica se o ProdutoDAO está inicializado
+  if not Assigned(FProdutoDAO) then
+  begin
+    raise Exception.Create('ProdutoDAO não está inicializado.');
+  end;
+
+  // Preenche os dados do produto
+  FProduto.Nome := nome;
+  FProduto.Preco := preco;
+  FProduto.QuantidadeEmEstoque := 0;
+
+  // Chama o método InserirProduto do DAO e retorna o resultado
+  Result := FProdutoDAO.InserirProduto(FProduto);
+end;
+
+function TProdutoViewModel.ListarProdutos(idProduto: integer; nome: string): TDataSet;
+begin
+  // Verifica se o ProdutoDAO está inicializado
+  if not Assigned(FProdutoDAO) then
+  begin
+    raise Exception.Create('ProdutoDAO não está inicializado.');
+  end;
+
+  FProduto.ProdutoID := idProduto;
+  FProduto.Nome := nome;
+  Result := FProdutoDAO.ListarProdutos(FProduto);
+end;
+
+function TProdutoViewModel.ExcluirProduto(idProduto: integer): Boolean;
+begin
+  // Verifica se o ProdutoDAO está inicializado
+  if not Assigned(FProdutoDAO) then
+  begin
+    raise Exception.Create('ProdutoDAO não está inicializado.');
+  end;
+
+  Result := FProdutoDAO.ExcluirProduto(idProduto);
+end;
+
+function TProdutoViewModel.AtualizarProduto(nome: string; preco: Currency; estoque: integer): Boolean;
+begin
+  // Verifica se o ProdutoDAO está inicializado
+  if not Assigned(FProdutoDAO) then
+  begin
+    raise Exception.Create('ProdutoDAO não está inicializado.');
+  end;
+
+  FProduto.Nome := nome;
+  FProduto.Preco := preco;
+  FProduto.QuantidadeEmEstoque := estoque;
+  Result := FProdutoDAO.AtualizarProduto(FProduto);
+end;
+
+end.
+

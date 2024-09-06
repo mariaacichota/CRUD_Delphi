@@ -8,7 +8,8 @@ uses
   Produto.FormAuxiliar.ViewModel in 'Produto.FormAuxiliar.ViewModel.pas',
   Produto.FormAuxiliar.Model in 'Produto.FormAuxiliar.Model.pas',
   Produto.FormAuxiliar.View in 'Produto.FormAuxiliar.View.pas' {Form1},
-  ProdutoDAO in 'ProdutoDAO.pas';
+  ProdutoDAO in 'ProdutoDAO.pas',
+  FireDAC.DApt;
 
 {$R *.res}
 

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/09/05 16:13:58.000.092,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 16:43:37.000.668,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.View.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 16:43:37.000.668,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.View.dfm=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/09/05 16:43:50.000.425,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\CRUD_Delphi.dproj=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2024/09/06 00:44:20.000.545,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 00:44:28.000.150,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/09/06 00:44:37.000.668,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.ViewModel.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/09/06 00:44:46.000.235,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.Model.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:04:19.000.850,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:04:30.000.950,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.FormAuxiliar.View.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:04:53.000.350,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.FormAuxiliar.ViewModel.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.FormAuxiliar.View.pas</Transaction>
+    <Transaction>2024/09/06 01:05:04.000.712,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:05:11.000.842,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.FormAuxiliar.Model.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:05:21.000.631,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:05:29.000.533,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.FormAuxiliar.View.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:05:29.000.533,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Produto.FormAuxiliar.View.dfm=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/09/06 01:32:50.000.743,=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/09/06 01:32:56.000.208,C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\ProdutoDAO.pas=C:\Users\Maria Cichota\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

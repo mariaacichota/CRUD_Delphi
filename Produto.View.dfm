@@ -29,7 +29,7 @@ object frmProduto: TfrmProduto
       TabOrder = 0
       object btnAdicionar: TButton
         Left = 8
-        Top = 9
+        Top = 10
         Width = 75
         Height = 25
         Caption = 'Adicionar'
@@ -47,7 +47,7 @@ object frmProduto: TfrmProduto
       end
       object btnGerarNFe: TButton
         Left = 512
-        Top = 9
+        Top = 10
         Width = 105
         Height = 25
         Caption = 'Gerar NF-e'
@@ -196,5 +196,9 @@ object frmProduto: TfrmProduto
   object dsProdutos: TDataSource
     Left = 872
     Top = 465
+  end
+  object FDConnection1: TFDConnection
+    Left = 664
+    Top = 288
   end
 end
