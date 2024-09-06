@@ -1,0 +1,23 @@
+O projeto está estruturado da seguinte forma:
+
+> Formulário Principal (Produto.View): Contém a interface do usuário para gerenciar produtos.
+> Modelo (Produto.Model): Define a estrutura dos dados do produto.
+> ViewModel (Produto.ViewModel): Gerencia a lógica de negócios e interage com o DAO.
+> Data Access Object (ProdutoDAO): Encapsula as operações de CRUD no banco de dados.
+> Biblioteca ACBr: Utilizada para a geração de NF-e.
+> Relatórios e Consultas: Scripts SQL para gerar relatórios.
+
+Boas Práticas de Design e Documentação:
+> Separação de Responsabilidades: Cada componente (DAO, ViewModel, Formulário) tem uma responsabilidade clara, facilitando a manutenção e entendimento do código.
+> Encapsulamento: Utilização de métodos e propriedades para manipular dados de forma segura.
+> Exceções e Erros: Tratar exceções para garantir que erros sejam comunicados adequadamente ao usuário.
+> Configuração de Banco de Dados: Uso de configurações centralizadas e parâmetros para gerenciar conexões e configurações.
+> Documentação e Nomenclatura: Utilização de nomes descritivos e documentação inline para facilitar a compreensão do código.
+> Uso de Bibliotecas: Integrar bibliotecas externas (como ACBr) com configurações e uso apropriados.
+
+Futuras Modificações:
+> Incluir relatório com FastReport;
+> Adicionar novos relatórios para controle de estoque e produtos cadastrados;
+> Adicionar novos módulos ao sistema;
+> Desenvolver testes automatizados;
+> Implementar formulários para a tela auxiliar onde serão colocadas as funções separadas de NF-e e Relatório.

@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.VCLUI.Wait, FireDAC.Comp.Client, FireDAC.Phys.MSSQL, FireDAC.Phys.ODBCWrapper,
-  ProdutoDAO, ACBrNFe;
+  ProdutoDAO, ACBrNFe, ACBrNFeDANFEClass, ACBrNFeNotas, ACBrNFeDANFCEClass;
 
 type
   TfrmProduto = class(TForm)
@@ -46,6 +46,8 @@ type
     FProdutoDAO: TProdutoDAO;
     procedure LimparCampos;
     procedure ConfigurarConexaoSQLServer;
+    procedure ConfigurarACBrNFe;
+    procedure GerarXMLNF_e;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -73,6 +75,34 @@ begin
   FProdutoViewModel.Free;
   FProdutoDAO.Free;
   inherited;
+end;
+
+procedure TfrmProduto.ConfigurarACBrNFe;
+begin
+  ACBrNFe1.Configuracoes.Geral.SSLLib := sslNone;
+  ACBrNFe1.Configuracoes.Geral.SSLCertificado := 'C:\Certificado\certificado.pfx';
+  ACBrNFe1.Configuracoes.WebServices.UF := ufSP;
+  ACBrNFe1.Configuracoes.WebServices.Ambiente := taHomologacao;
+end;
+
+procedure TfrmProduto.GerarXMLNF_e;
+begin
+  ACBrNFe1.NotasFiscais.Add;
+  with ACBrNFe1.NotasFiscais[0] do
+  begin
+    Identificacao.Numero := 1;
+    Identificacao.Serie := 1;
+    Identificacao.TipoEmissao := teNormal;
+  end;
+
+  try
+    ACBrNFe1.NotasFiscais[0].GerarNFe;
+    ACBrNFe1.NotasFiscais[0].SalvarXML('C:\NF-e\XML\NF-e.xml');
+    ShowMessage('NF-e gerada com sucesso!');
+  except
+    on E: Exception do
+      ShowMessage('Erro ao gerar NF-e: ' + E.Message);
+  end;
 end;
 
 procedure TfrmProduto.ConfigurarConexaoSQLServer;
@@ -121,8 +151,8 @@ end;
 
 procedure TfrmProduto.btnGerarNFeClick(Sender: TObject);
 begin
-  // Configurar e gerar NF-e utilizando ACBr
-  // Aqui você precisa preencher os detalhes da NF-e e salvar o XML
+  ConfigurarACBrNFe;
+  GerarXMLNF_e;
 end;
 
 procedure TfrmProduto.btnRelatorioClick(Sender: TObject);

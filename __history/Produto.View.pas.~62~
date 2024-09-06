@@ -8,7 +8,8 @@ uses
   Vcl.Grids, Vcl.DBGrids, Produto.ViewModel, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, FireDAC.Phys.MSSQL, ProdutoDAO, ACBrNFe;
+  FireDAC.VCLUI.Wait, FireDAC.Comp.Client, FireDAC.Phys.MSSQL, FireDAC.Phys.ODBCWrapper,
+  ProdutoDAO, ACBrNFe;
 
 type
   TfrmProduto = class(TForm)
@@ -45,6 +46,8 @@ type
     FProdutoDAO: TProdutoDAO;
     procedure LimparCampos;
     procedure ConfigurarConexaoSQLServer;
+    procedure ConfigurarACBrNFe;
+    procedure GerarXMLNF_e;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -74,17 +77,43 @@ begin
   inherited;
 end;
 
+procedure TfrmProduto.ConfigurarACBrNFe;
+begin
+  ACBrNFe1.Configuracoes.Geral.SSLLib := sslNone;
+  ACBrNFe1.Configuracoes.Geral.SSLCertificado := 'C:\Certificado\certificado.pfx';
+  ACBrNFe1.Configuracoes.WebServices.UF := ufSP;
+  ACBrNFe1.Configuracoes.WebServices.Ambiente := taHomologacao;
+end;
+
+procedure TfrmProduto.GerarXMLNF_e;
+begin
+  ACBrNFe1.NotasFiscais.Add;
+  with ACBrNFe1.NotasFiscais[0] do
+  begin
+    Identificacao.Numero := 1;
+    Identificacao.Serie := 1;
+    Identificacao.TipoEmissao := teNormal;
+  end;
+
+  try
+    ACBrNFe1.NotasFiscais[0].GerarNFe;
+    ACBrNFe1.NotasFiscais[0].SalvarXML('C:\Caminho\Para\NF-e.xml');
+    ShowMessage('NF-e gerada com sucesso!');
+  except
+    on E: Exception do
+      ShowMessage('Erro ao gerar NF-e: ' + E.Message);
+  end;
+end;
+
 procedure TfrmProduto.ConfigurarConexaoSQLServer;
 begin
   if not FDConnection1.Connected then
   begin
-    FDConnection1.DriverName := 'MSSQL';
-    FDConnection1.Params.Database := 'CRUD';
-    FDConnection1.Params.Add('Server=DESKTOP-LQTA0BU\SQLEXPRESS');
-    FDConnection1.Params.Add('User_Name=CRUD_Delphi');
-    FDConnection1.Params.Add('Password=CRUD123');
-    FDConnection1.Params.Add('Trusted_Connection=yes');
-    FDConnection1.LoginPrompt := False;
+      FDConnection1.DriverName := 'MSSQL';
+      FDConnection1.Params.Database := 'CRUD';
+      FDConnection1.Params.Add('Server=DESKTOP-LQTA0BU\SQLEXPRESS');
+      FDConnection1.Params.Add('Trusted_Connection=yes');
+      FDConnection1.LoginPrompt := False;
     try
       FDConnection1.Connected := True;
       ShowMessage('Conexão com o banco de dados bem-sucedida!');
